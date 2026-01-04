@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Parabéns! 💗 Agende sua consulta</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,10 +37,9 @@
         linear-gradient(180deg, var(--bg1), var(--bg2));
       min-height:100vh;
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:center;
-      padding: 28px 16px;
-      padding-bottom: calc(28px + env(safe-area-inset-bottom));
+      padding: clamp(12px, 3vw, 28px);
     }
 
     .wrap{
@@ -56,12 +55,29 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 26px;
+      padding: clamp(18px, 4vw, 26px);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-weight: 600;
+      font-size: clamp(12px, 2.5vw, 14px);
+    }
+    .dot{
+      width:12px; height:12px; border-radius:99px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 6px 16px rgba(233,109,160,.35);
     }
 
     h1{
-      margin: 6px 0 8px;
-      font-size: clamp(24px, 3.4vw, 38px);
+      margin: 14px 0 6px;
+      font-size: clamp(22px, 5vw, 38px);
       line-height: 1.15;
       letter-spacing: -0.4px;
     }
@@ -70,64 +86,44 @@
       margin: 0;
       color: var(--muted);
       line-height: 1.55;
-      font-size: 15.5px;
+      font-size: clamp(14px, 3vw, 15.5px);
     }
     .highlight{ color: var(--text); font-weight: 600; }
 
     .form{
       margin-top: 14px;
-      padding: 14px;
+      padding: clamp(12px, 3vw, 14px);
       border-radius: 18px;
       border: 1px solid var(--border);
       background:#fff;
     }
 
-    label{
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 600;
-      display:block;
-      margin-bottom:8px;
+    label{ 
+      font-size: clamp(12px, 2.5vw, 13px); 
+      color: var(--muted); 
+      font-weight: 600; 
+      display:block; 
+      margin-bottom:8px; 
     }
 
     .row{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr;
+      gap: 12px;
       margin-bottom: 12px;
     }
-
     input{
       width:100%;
-      padding: 12px 12px;
+      padding: clamp(10px, 2.5vw, 12px);
       border-radius: 14px;
       border: 1px solid var(--border);
       outline: none;
       font-family: inherit;
-      font-size: 14px;
+      font-size: clamp(13px, 3vw, 14px);
       background:#fff;
       color: var(--text);
     }
     input:focus{
-      border-color: rgba(233,109,160,.55);
-      box-shadow: 0 0 0 4px rgba(233,109,160,.10);
-    }
-
-    textarea#tzInfo{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      outline: none;
-      font-family: inherit;
-      font-size: 14px;
-      background:#fff;
-      color: var(--text);
-      resize: none;
-      line-height: 1.25;
-      height: 54px;
-    }
-    textarea#tzInfo:focus{
       border-color: rgba(233,109,160,.55);
       box-shadow: 0 0 0 4px rgba(233,109,160,.10);
     }
@@ -137,56 +133,56 @@
       align-items:center;
       justify-content:space-between;
       margin: 12px 0 10px;
-      gap: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
     .sectionTitle b{
-      font-size: 13px;
+      font-size: clamp(12px, 2.8vw, 13px);
       color: var(--muted);
       letter-spacing: .2px;
     }
     .miniNote{
-      font-size: 12.5px;
+      font-size: clamp(11px, 2.5vw, 12.5px);
       color: rgba(107,95,96,.9);
     }
 
-    /* ===== Mobile-friendly day picker: horizontal scroll ===== */
+    /* Calendar buttons - Mobile First */
     .days{
       display:grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(90px, 1fr);
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+      gap: clamp(6px, 1.5vw, 8px);
     }
-    .days::-webkit-scrollbar{ height: 8px; }
-    .days::-webkit-scrollbar-thumb{ background: rgba(233,109,160,.18); border-radius: 99px; }
-
     .btnDay{
       border: 1px solid var(--border);
       background: #fff;
       border-radius: 14px;
-      padding: 12px 10px;
+      padding: clamp(8px, 2vw, 10px);
       cursor:pointer;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       text-align:center;
-      min-height: 62px;
-      scroll-snap-align: start;
-      touch-action: manipulation;
+      min-height: clamp(52px, 12vw, 58px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .btnDay:hover, .btnDay:active{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(33, 24, 24, .08);
+      border-color: rgba(233,109,160,.35);
     }
     .btnDay .dow{
-      font-size: 11px;
+      font-size: clamp(10px, 2.2vw, 11px);
       color: rgba(107,95,96,.92);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .5px;
     }
     .btnDay .dm{
-      font-size: 14px;
+      font-size: clamp(13px, 3vw, 14px);
       font-weight: 700;
       color: var(--text);
-      margin-top: 3px;
+      margin-top: 2px;
     }
     .btnDay.active{
       border-color: rgba(233,109,160,.55);
@@ -194,59 +190,70 @@
       background: linear-gradient(135deg, rgba(233,109,160,.10), rgba(255,182,154,.12));
     }
 
-    /* ===== Mobile-friendly time grid ===== */
+    /* Time buttons - Mobile First */
     .times{
       display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: clamp(6px, 1.5vw, 8px);
     }
     .btnTime{
       border: 1px solid var(--border);
       background: #fff;
       border-radius: 14px;
-      padding: 12px 10px;
+      padding: clamp(8px, 2vw, 10px);
       cursor:pointer;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       text-align:center;
       line-height: 1.15;
-      min-height: 64px;
-      touch-action: manipulation;
     }
     .btnTime .ct{
       font-weight: 800;
       color: var(--text);
-      font-size: 14px;
+      font-size: clamp(13px, 3vw, 14px);
     }
     .btnTime .local{
-      margin-top: 5px;
+      margin-top: 4px;
       font-weight: 700;
-      font-size: 12px;
+      font-size: clamp(11px, 2.5vw, 12px);
       color: rgba(107,95,96,.92);
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btnTime:hover, .btnTime:active{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(33, 24, 24, .08);
+      border-color: rgba(233,109,160,.35);
     }
 
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 14px;
+    .actions{ 
+      display:flex; 
+      flex-direction: column;
+      gap:10px; 
+      margin-top: 14px; 
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      display:inline-flex; 
+      align-items:center; 
+      justify-content:center; 
       gap:10px;
-      padding: 12px 16px;
+      padding: clamp(10px, 2.5vw, 12px) clamp(14px, 3vw, 16px);
       border-radius: 14px;
       border: 1px solid var(--border);
       background:#fff;
       color: var(--text);
       text-decoration:none;
       font-weight: 700;
+      font-size: clamp(13px, 3vw, 14px);
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       cursor:pointer;
-      touch-action: manipulation;
+      width: 100%;
+    }
+    .btn:hover, .btn:active{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(33, 24, 24, .10);
+      border-color: rgba(233,109,160,.35);
     }
     .btn.primary{
       border:none;
@@ -256,111 +263,144 @@
     }
 
     /* Selected chips */
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
+    .chips{ 
+      display:flex; 
+      flex-direction: column;
+      gap:8px; 
+      margin-top: 12px; 
+    }
     .chip{
-      display:inline-flex; align-items:flex-start; gap:10px;
-      padding: 8px 10px;
-      border-radius: 999px;
+      display:flex; 
+      align-items:flex-start; 
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       background: #fff7fb;
-      font-size: 13px;
+      font-size: clamp(12px, 2.8vw, 13px);
       color: var(--text);
       font-weight: 700;
-      max-width: 100%;
+      line-height: 1.4;
     }
-    .chip span{
-      font-weight: 600;
-      color: rgba(42,35,35,.78);
-      overflow:hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 55vw;
+    .chip span{ 
+      font-weight: 600; 
+      color: rgba(42,35,35,.78); 
+      flex: 1;
     }
     .chip button{
-      border:none; background: transparent; cursor:pointer;
-      font-size: 14px; line-height: 1; padding: 0 2px;
+      border:none; 
+      background: transparent; 
+      cursor:pointer;
+      font-size: 16px; 
+      line-height: 1; 
+      padding: 0 4px;
       color: rgba(42,35,35,.75);
-      touch-action: manipulation;
+      flex-shrink: 0;
     }
 
     .list{ margin-top: 14px; display:grid; gap: 10px; }
     .item{
-      display:flex; gap: 12px;
-      padding: 12px 12px;
+      display:flex; 
+      gap: 12px;
+      padding: clamp(10px, 2.5vw, 12px);
       border-radius: 16px;
       border: 1px solid var(--border);
       background:#fff;
     }
     .icon{
-      width: 38px; height: 38px;
+      width: clamp(34px, 8vw, 38px); 
+      height: clamp(34px, 8vw, 38px);
       border-radius: 14px;
-      display:grid; place-items:center;
+      display:grid; 
+      place-items:center;
       background: linear-gradient(135deg, rgba(233,109,160,.18), rgba(255,182,154,.20));
       border: 1px solid rgba(233,109,160,.18);
       flex: 0 0 auto;
-      font-size: 18px;
+      font-size: clamp(16px, 4vw, 18px);
     }
-    .item b{ display:block; margin-bottom: 2px; }
-    .mini{ font-size: 13.5px; color: var(--muted); margin-top: 10px; }
-
-    /* ===== Mobile optimization ===== */
-    @media (max-width: 720px){
-      body{ padding: 18px 12px; padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
-      .card{ padding: 18px; border-radius: 20px; }
-      .form{ padding: 12px; }
-      .row{ grid-template-columns: 1fr; }
-      .times{ grid-template-columns: repeat(2, 1fr); }
-      .btn{ width: 100%; }
-      .actions{ flex-direction: column; }
-      /* remove hover lift on touch-ish devices */
-      .btnDay:hover, .btnTime:hover, .btn:hover{ transform:none; box-shadow:none; }
+    .item b{ 
+      display:block; 
+      margin-bottom: 2px; 
+      font-size: clamp(13px, 3vw, 14px);
+    }
+    .item p{
+      font-size: clamp(12px, 2.8vw, 14px);
     }
 
-    @media (max-width: 380px){
-      .times{ grid-template-columns: 1fr; }
-      .btnTime .local{ white-space: normal; }
-      textarea#tzInfo{ height: 62px; }
+    .side h2{ 
+      margin:0 0 10px; 
+      font-size: clamp(14px, 3.5vw, 16px);
+    }
+    .mini{ 
+      font-size: clamp(12px, 2.8vw, 13.5px); 
+      color: var(--muted); 
+      margin-top: 10px;
+      line-height: 1.5;
     }
 
-    /* Sticky bottom CTA (mobile): keeps WhatsApp button always reachable */
-    .stickyCta{
-      display:none;
+    textarea#tzInfo{
+      width:100%;
+      padding: clamp(10px, 2.5vw, 12px);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      outline: none;
+      font-family: inherit;
+      font-size: clamp(12px, 2.8vw, 14px);
+      background:#fff;
+      color: var(--text);
+      resize: none;
+      line-height: 1.25;
+      height: 52px;
     }
-    @media (max-width: 720px){
-      .stickyCta{
-        position: sticky;
-        bottom: 10px;
-        z-index: 10;
-        margin-top: 14px;
-        padding-bottom: env(safe-area-inset-bottom);
-        display:block;
+    textarea#tzInfo:focus{
+      border-color: rgba(233,109,160,.55);
+      box-shadow: 0 0 0 4px rgba(233,109,160,.10);
+    }
+
+    /* Tablets e Desktop */
+    @media (min-width: 640px){
+      .row{ grid-template-columns: 1fr 1fr; }
+      .days{ grid-template-columns: repeat(5, 1fr); }
+      .times{ grid-template-columns: repeat(3, 1fr); }
+      .chips{ flex-direction: row; flex-wrap: wrap; }
+      .chip{ width: auto; }
+      .actions{ flex-direction: row; }
+      .btn{ width: auto; }
+    }
+
+    @media (min-width: 880px){
+      .wrap{ grid-template-columns: 1.15fr .85fr; }
+      .days{ grid-template-columns: repeat(7, 1fr); }
+      .times{ grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Melhorias de touch para mobile */
+    @media (hover: none) and (pointer: coarse) {
+      .btnDay, .btnTime, .btn {
+        -webkit-tap-highlight-color: rgba(233,109,160,.1);
       }
-      .stickyCta .btn.primary{
-        width:100%;
-        border-radius: 16px;
-        padding: 14px 16px;
-        font-size: 15px;
-      }
     }
+
   </style>
 </head>
 
 <body>
   <main class="wrap">
     <section class="card">
-
+      
       <h1>Parabéns pela sua decisão. 💗</h1>
       <p>
-        Agora o próximo passo é simples: <span class="highlight">me indicar seus horários de preferência</span>.
-        <br/>Essas opções não significam agenda livre, mas me ajudam a consultar minha agenda
-        e te propor o melhor horário possível para a sua primeira consulta.
+       Agora o próximo passo é simples: <span class="highlight">me indicar seus horários de preferência</span>.
+<br/>Essas opções não significam agenda livre, mas me ajudam a consultar minha agenda
+e te propor o melhor horário possível para a sua primeira consulta.
+
       </p>
 
       <div class="form">
         <div class="row">
           <div>
-            <label for="name">Seu nome</label>
-            <input id="name" type="text" placeholder="Ex.: Ana Paula" autocomplete="name" />
+            <label for="name">Seu nome </label>
+            <input id="name" type="text" placeholder="Ex.: Ana Paula" />
           </div>
           <div>
             <label>Fusos horários</label>
@@ -370,7 +410,7 @@
 
         <div class="sectionTitle">
           <b>1) Escolha um dia</b>
-          <div class="miniNote">Arraste para o lado →</div>
+          <div class="miniNote">Próximos 14 dias</div>
         </div>
         <div class="days" id="days"></div>
 
@@ -385,20 +425,13 @@
         <div class="actions">
           <button class="btn" id="clearAll" type="button">🧹 Limpar</button>
           <a class="btn primary" id="waBtn" href="#" target="_blank" rel="noopener">
-            💬 Enviar preferências no WhatsApp
+            💬 Enviar opções no WhatsApp
           </a>
         </div>
 
         <div class="mini" style="margin-top:10px;">
           Os botões mostram <span class="highlight">Central Time (CT)</span> + o horário no <span class="highlight">seu fuso</span>.
           A mensagem vai com os dois.
-        </div>
-
-        <!-- Sticky CTA for mobile -->
-        <div class="stickyCta">
-          <a class="btn primary" id="waBtnSticky" href="#" target="_blank" rel="noopener">
-            💬 Enviar no WhatsApp
-          </a>
         </div>
       </div>
 
@@ -417,7 +450,8 @@
         <span class="highlight">+1 (765) 701-9539</span>
       </p>
     </section>
-  </main>
+
+      </main>
 
   <script>
     // ===== CONFIG =====
@@ -440,7 +474,6 @@
       return times;
     }
 
-    // 9:00 AM até 6:00 PM (Central Time), de 30 em 30 min
     const AVAILABLE_TIMES = generateTimesHalfHour(9, 0, 18, 0);
 
     // ===== ELEMENTS =====
@@ -451,12 +484,11 @@
     const chipsEl = document.getElementById("chips");
     const clearBtn = document.getElementById("clearAll");
     const waBtn = document.getElementById("waBtn");
-    const waBtnSticky = document.getElementById("waBtnSticky");
     const timeNote = document.getElementById("timeNote");
 
     // ===== STATE =====
-    let selectedDayISO = null; // "YYYY-MM-DD"
-    let slots = []; // { key, localLabel, ctLabel, dateISO, timeHHMM }
+    let selectedDayISO = null;
+    let slots = [];
 
     // ===== HELPERS =====
     function pad2(n){ return String(n).padStart(2,"0"); }
@@ -479,7 +511,6 @@
       return { dow, dm };
     }
 
-    // Data no formato BR (para mensagem)
     function formatDateBRInTZ(dateObj, timeZone){
       return new Intl.DateTimeFormat("pt-BR", {
         timeZone,
@@ -490,7 +521,6 @@
       }).format(dateObj);
     }
 
-    // Hora em AM/PM (para botões e mensagem)
     function formatTimeAmPmInTZ(dateObj, timeZone){
       return new Intl.DateTimeFormat("en-US", {
         timeZone,
@@ -500,7 +530,6 @@
       }).format(dateObj);
     }
 
-    // Retorna offset em minutos de um timeZone em relação ao UTC para um Date específico (considera DST)
     function getTimeZoneOffsetMinutes(date, timeZone){
       const dtf = new Intl.DateTimeFormat("en-US", {
         timeZone,
@@ -521,12 +550,10 @@
         Number(map.second)
       );
 
-      // ✅ SINAL CORRETO
       return (date.getTime() - asUTC) / 60000;
     }
 
     function buildDateFromCentralISO(dateISO, timeHHMM){
-      // Interpreta dateISO + timeHHMM como horário em America/Chicago (CT) e devolve Date absoluto
       const [y, m, d] = dateISO.split("-").map(Number);
       const [hh, mm] = timeHHMM.split(":").map(Number);
 
@@ -562,7 +589,6 @@
         const d = new Date(today);
         d.setDate(today.getDate() + i);
 
-        // ❌ pula domingo e sábado
         if(d.getDay() === 0) continue;
         if(d.getDay() === 6) continue;
 
@@ -582,12 +608,6 @@
 
         daysEl.appendChild(btn);
         added++;
-      }
-
-      // melhora UX no celular: garante que o "active" fique visível
-      const active = daysEl.querySelector(".btnDay.active");
-      if(active && typeof active.scrollIntoView === "function"){
-        active.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
       }
     }
 
@@ -654,15 +674,9 @@
         chipsEl.appendChild(chip);
       });
 
-      const link = buildWhatsAppLink();
-      waBtn.href = link;
-      waBtnSticky.href = link;
-
-      const disabled = (slots.length === 0);
-      [waBtn, waBtnSticky].forEach(el => {
-        el.style.pointerEvents = disabled ? "none" : "auto";
-        el.style.opacity = disabled ? ".6" : "1";
-      });
+      waBtn.href = buildWhatsAppLink();
+      waBtn.style.pointerEvents = (slots.length === 0 ? "none" : "auto");
+      waBtn.style.opacity = (slots.length === 0 ? ".6" : "1");
     }
 
     function buildMessage(){
@@ -689,14 +703,13 @@
 
     function buildWhatsAppLink(){
       const msg = encodeURIComponent(buildMessage());
-      return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+      return `https://wa.me/17657019539?text=${msg}`;
     }
 
     // ===== INIT =====
     const localTZ = getLocalTimeZone();
     tzInfoEl.value = `Seu fuso: ${localTZ}\nMeu fuso: Central Time (CT)`;
 
-    // Seleciona amanhã por padrão
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     selectedDayISO = isoFromDate(tomorrow);
