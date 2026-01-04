@@ -98,12 +98,12 @@
       background:#fff;
     }
 
-    label{ 
-      font-size: clamp(12px, 2.5vw, 13px); 
-      color: var(--muted); 
-      font-weight: 600; 
-      display:block; 
-      margin-bottom:8px; 
+    label{
+      font-size: clamp(12px, 2.5vw, 13px);
+      color: var(--muted);
+      font-weight: 600;
+      display:block;
+      margin-bottom:8px;
     }
 
     .row{
@@ -206,11 +206,14 @@
       text-align:center;
       line-height: 1.15;
     }
+
+    /* ✅ Linha principal (negrito) = horário dela */
     .btnTime .ct{
       font-weight: 800;
       color: var(--text);
       font-size: clamp(13px, 3vw, 14px);
     }
+    /* ✅ Linha menor = horário CT */
     .btnTime .local{
       margin-top: 4px;
       font-weight: 700;
@@ -220,23 +223,24 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
     .btnTime:hover, .btnTime:active{
       transform: translateY(-1px);
       box-shadow: 0 12px 30px rgba(33, 24, 24, .08);
       border-color: rgba(233,109,160,.35);
     }
 
-    .actions{ 
-      display:flex; 
+    .actions{
+      display:flex;
       flex-direction: column;
-      gap:10px; 
-      margin-top: 14px; 
+      gap:10px;
+      margin-top: 14px;
     }
 
     .btn{
-      display:inline-flex; 
-      align-items:center; 
-      justify-content:center; 
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       gap:10px;
       padding: clamp(10px, 2.5vw, 12px) clamp(14px, 3vw, 16px);
       border-radius: 14px;
@@ -263,15 +267,15 @@
     }
 
     /* Selected chips */
-    .chips{ 
-      display:flex; 
+    .chips{
+      display:flex;
       flex-direction: column;
-      gap:8px; 
-      margin-top: 12px; 
+      gap:8px;
+      margin-top: 12px;
     }
     .chip{
-      display:flex; 
-      align-items:flex-start; 
+      display:flex;
+      align-items:flex-start;
       gap:8px;
       padding: 10px 12px;
       border-radius: 16px;
@@ -282,17 +286,17 @@
       font-weight: 700;
       line-height: 1.4;
     }
-    .chip span{ 
-      font-weight: 600; 
-      color: rgba(42,35,35,.78); 
+    .chip span{
+      font-weight: 600;
+      color: rgba(42,35,35,.78);
       flex: 1;
     }
     .chip button{
-      border:none; 
-      background: transparent; 
+      border:none;
+      background: transparent;
       cursor:pointer;
-      font-size: 16px; 
-      line-height: 1; 
+      font-size: 16px;
+      line-height: 1;
       padding: 0 4px;
       color: rgba(42,35,35,.75);
       flex-shrink: 0;
@@ -300,7 +304,7 @@
 
     .list{ margin-top: 14px; display:grid; gap: 10px; }
     .item{
-      display:flex; 
+      display:flex;
       gap: 12px;
       padding: clamp(10px, 2.5vw, 12px);
       border-radius: 16px;
@@ -308,32 +312,28 @@
       background:#fff;
     }
     .icon{
-      width: clamp(34px, 8vw, 38px); 
+      width: clamp(34px, 8vw, 38px);
       height: clamp(34px, 8vw, 38px);
       border-radius: 14px;
-      display:grid; 
+      display:grid;
       place-items:center;
       background: linear-gradient(135deg, rgba(233,109,160,.18), rgba(255,182,154,.20));
       border: 1px solid rgba(233,109,160,.18);
       flex: 0 0 auto;
       font-size: clamp(16px, 4vw, 18px);
     }
-    .item b{ 
-      display:block; 
-      margin-bottom: 2px; 
+    .item b{
+      display:block;
+      margin-bottom: 2px;
       font-size: clamp(13px, 3vw, 14px);
     }
     .item p{
       font-size: clamp(12px, 2.8vw, 14px);
     }
 
-    .side h2{ 
-      margin:0 0 10px; 
-      font-size: clamp(14px, 3.5vw, 16px);
-    }
-    .mini{ 
-      font-size: clamp(12px, 2.8vw, 13.5px); 
-      color: var(--muted); 
+    .mini{
+      font-size: clamp(12px, 2.8vw, 13.5px);
+      color: var(--muted);
       margin-top: 10px;
       line-height: 1.5;
     }
@@ -380,6 +380,7 @@
         -webkit-tap-highlight-color: rgba(233,109,160,.1);
       }
     }
+    .tzBlock{ display:none; }
 
   </style>
 </head>
@@ -387,25 +388,23 @@
 <body>
   <main class="wrap">
     <section class="card">
-      
       <h1>Parabéns pela sua decisão. 💗</h1>
       <p>
-       Agora o próximo passo é simples: <span class="highlight">me indicar seus horários de preferência</span>.
-<br/>Essas opções não significam agenda livre, mas me ajudam a consultar minha agenda
-e te propor o melhor horário possível para a sua primeira consulta.
-
+        Agora o próximo passo é simples: <span class="highlight">me indicar seus horários de preferência</span>.
+        <br/>Essas opções não significam agenda livre, mas me ajudam a consultar minha agenda
+        e te propor o melhor horário possível para a sua primeira consulta.
       </p>
 
       <div class="form">
         <div class="row">
           <div>
-            <label for="name">Seu nome </label>
+            <label for="name">Seu nome</label>
             <input id="name" type="text" placeholder="Ex.: Ana Paula" />
           </div>
-          <div>
-            <label>Fusos horários</label>
-            <textarea id="tzInfo" readonly rows="2"></textarea>
-          </div>
+          <div class="tzBlock">
+  <label>Fusos horários</label>
+  <textarea id="tzInfo" readonly rows="2"></textarea>
+</div>
         </div>
 
         <div class="sectionTitle">
@@ -416,7 +415,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
         <div class="sectionTitle" style="margin-top:14px;">
           <b>2) Escolha um horário</b>
-          <div class="miniNote" id="timeNote">Horários em Central Time (CT)</div>
+          <div class="miniNote" id="timeNote">Horários no seu fuso</div>
         </div>
         <div class="times" id="times"></div>
 
@@ -430,8 +429,8 @@ e te propor o melhor horário possível para a sua primeira consulta.
         </div>
 
         <div class="mini" style="margin-top:10px;">
-          Os botões mostram <span class="highlight">Central Time (CT)</span> + o horário no <span class="highlight">seu fuso</span>.
-          A mensagem vai com os dois.
+          Agora você escolhe pelo <span class="highlight">seu horário</span>.
+          Na mensagem do WhatsApp eu recebo <span class="highlight">os dois</span> (seu fuso + Central Time).
         </div>
       </div>
 
@@ -450,8 +449,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
         <span class="highlight">+1 (765) 701-9539</span>
       </p>
     </section>
-
-      </main>
+  </main>
 
   <script>
     // ===== CONFIG =====
@@ -589,8 +587,8 @@ e te propor o melhor horário possível para a sua primeira consulta.
         const d = new Date(today);
         d.setDate(today.getDate() + i);
 
-        if(d.getDay() === 0) continue;
-        if(d.getDay() === 6) continue;
+        if(d.getDay() === 0) continue; // domingo
+        if(d.getDay() === 6) continue; // sábado
 
         const iso = isoFromDate(d);
         const { dow, dm } = fmtDayBtn(d);
@@ -617,7 +615,9 @@ e te propor o melhor horário possível para a sua primeira consulta.
         timeNote.textContent = "Primeiro selecione um dia acima ☝️";
         return;
       }
-      timeNote.innerHTML = "Horários em Central Time (CT), <b>abaixo é o horário local seu</b> — clique para adicionar (até 3)";
+
+      // ✅ Nota agora orienta “horários no seu fuso”
+      timeNote.innerHTML = "Horários no seu fuso — clique para adicionar (até 3)";
 
       const localTZ = getLocalTimeZone();
 
@@ -630,9 +630,10 @@ e te propor o melhor horário possível para a sua primeira consulta.
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "btnTime";
+
+        // ✅ IMPORTANTE: botão agora mostra PRIMEIRO o horário dela, e embaixo CT
         btn.innerHTML = `
-          <div class="ct">${ctTime} <span style="font-weight:700;opacity:.85;">CT</span></div>
-          <div class="local">${localTime} seu horário</div>
+          <div class="ct">${localTime} <span style="font-weight:700;opacity:.85;"></span></div>
         `;
 
         btn.addEventListener("click", () => {
@@ -659,12 +660,13 @@ e te propor o melhor horário possível para a sua primeira consulta.
     function renderChipsAndLink(){
       chipsEl.innerHTML = "";
 
+      // ✅ (opcional, mas fica mais coerente): mostrar primeiro a opção no horário dela
       slots.forEach((s, idx) => {
         const chip = document.createElement("div");
         chip.className = "chip";
         chip.innerHTML = `
-          ${idx+1}) ${s.ctLabel}
-          <span>→ ${s.localLabel}</span>
+          ${idx+1}) ${s.localLabel}
+          <span>→ ${s.ctLabel}</span>
           <button type="button" aria-label="Remover">✕</button>
         `;
         chip.querySelector("button").addEventListener("click", () => {
@@ -688,9 +690,10 @@ e te propor o melhor horário possível para a sua primeira consulta.
         : `Olá Nutri, quero marcar minha primeira consulta.`;
 
       if(slots.length === 0){
-        return `${header}\n\nPode me ajudar com o agendamento? (Meu fuso: ${localTZ} | Nutri fuso: Central Time (CT)`;
+        return `${header}\n\nPode me ajudar com o agendamento? (Meu fuso: ${localTZ} | Nutri fuso: Central Time (CT))`;
       }
 
+      // ✅ WhatsApp continua com os dois, como você pediu (CT + Meu horário)
       const lines = slots.map((s, i) =>
         `${i+1}) Central Time (CT): ${s.ctLabel}\n   Meu horário: ${s.localLabel}`
       ).join("\n\n");
@@ -703,7 +706,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
     function buildWhatsAppLink(){
       const msg = encodeURIComponent(buildMessage());
-      return `https://wa.me/17657019539?text=${msg}`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
     }
 
     // ===== INIT =====
