@@ -688,7 +688,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
         : `Olá Nutri, quero marcar minha primeira consulta.`;
 
       if(slots.length === 0){
-        return `${header}\n\nPode me ajudar com o agendamento? (Meu fuso: ${localTZ} | Seu fuso: Central Time)`;
+        return `${header}\n\nPode me ajudar com o agendamento? (Meu fuso: ${localTZ} | Nutri fuso: Central Time (CT)`;
       }
 
       const lines = slots.map((s, i) =>
@@ -696,7 +696,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
       ).join("\n\n");
 
       const footer =
-        `\n\nMeu fuso: ${localTZ}\nSeu fuso: Central Time (CT)`;
+        `\n\nMeu fuso: ${localTZ}\nNutri fuso: Central Time (CT)`;
 
       return `${header}\n\nMinhas opções:\n\n${lines}${footer}`;
     }
@@ -708,7 +708,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
     // ===== INIT =====
     const localTZ = getLocalTimeZone();
-    tzInfoEl.value = `Seu fuso: ${localTZ}\nMeu fuso: Central Time (CT)`;
+    tzInfoEl.value = `Seu fuso: ${localTZ}\nNutri fuso: Central Time (CT)`;
 
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
