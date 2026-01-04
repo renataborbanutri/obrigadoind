@@ -286,6 +286,26 @@
       .times{ grid-template-columns: repeat(3, 1fr); }
       .days{ grid-template-columns: repeat(4, 1fr); }
     }
+
+  textarea#tzInfo{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  background:#fff;
+  color: var(--text);
+  resize: none;
+  line-height: 1.25;
+  height: 52px; /* ajuste fino */
+}
+textarea#tzInfo:focus{
+  border-color: rgba(233,109,160,.55);
+  box-shadow: 0 0 0 4px rgba(233,109,160,.10);
+}
+
   </style>
 </head>
 
@@ -309,7 +329,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
           </div>
           <div>
             <label>Fusos horários</label>
-            <input id="tzInfo" type="text" readonly />
+            <textarea id="tzInfo" readonly rows="2"></textarea>
           </div>
         </div>
 
@@ -622,7 +642,8 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
     // ===== INIT =====
     const localTZ = getLocalTimeZone();
-    tzInfoEl.value = `Seu fuso: ${localTZ}  |  Meu fuso: Central Time (CT)`;
+    tzInfoEl.value = `Seu fuso: ${localTZ}\nMeu fuso: Central Time (CT)`;
+
 
     // Seleciona amanhã por padrão
     const tomorrow = new Date();
