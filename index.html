@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Parabéns! 💗 Agende sua consulta</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,15 +37,16 @@
         linear-gradient(180deg, var(--bg1), var(--bg2));
       min-height:100vh;
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:center;
       padding: 28px 16px;
+      padding-bottom: calc(28px + env(safe-area-inset-bottom));
     }
 
     .wrap{
       width: min(980px, 100%);
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1fr;
       gap: 18px;
     }
 
@@ -58,25 +59,9 @@
       padding: 26px;
     }
 
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-weight: 600;
-    }
-    .dot{
-      width:12px; height:12px; border-radius:99px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 6px 16px rgba(233,109,160,.35);
-    }
-
     h1{
-      margin: 14px 0 6px;
-      font-size: clamp(26px, 3.2vw, 38px);
+      margin: 6px 0 8px;
+      font-size: clamp(24px, 3.4vw, 38px);
       line-height: 1.15;
       letter-spacing: -0.4px;
     }
@@ -97,7 +82,13 @@
       background:#fff;
     }
 
-    label{ font-size: 13px; color: var(--muted); font-weight: 600; display:block; margin-bottom:8px; }
+    label{
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      display:block;
+      margin-bottom:8px;
+    }
 
     .row{
       display:grid;
@@ -105,6 +96,7 @@
       gap: 10px;
       margin-bottom: 12px;
     }
+
     input{
       width:100%;
       padding: 12px 12px;
@@ -117,6 +109,25 @@
       color: var(--text);
     }
     input:focus{
+      border-color: rgba(233,109,160,.55);
+      box-shadow: 0 0 0 4px rgba(233,109,160,.10);
+    }
+
+    textarea#tzInfo{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      background:#fff;
+      color: var(--text);
+      resize: none;
+      line-height: 1.25;
+      height: 54px;
+    }
+    textarea#tzInfo:focus{
       border-color: rgba(233,109,160,.55);
       box-shadow: 0 0 0 4px rgba(233,109,160,.10);
     }
@@ -138,26 +149,31 @@
       color: rgba(107,95,96,.9);
     }
 
-    /* Calendar buttons */
+    /* ===== Mobile-friendly day picker: horizontal scroll ===== */
     .days{
       display:grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 8px;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(90px, 1fr);
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
     }
+    .days::-webkit-scrollbar{ height: 8px; }
+    .days::-webkit-scrollbar-thumb{ background: rgba(233,109,160,.18); border-radius: 99px; }
+
     .btnDay{
       border: 1px solid var(--border);
       background: #fff;
       border-radius: 14px;
-      padding: 10px 8px;
+      padding: 12px 10px;
       cursor:pointer;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       text-align:center;
-      min-height: 58px;
-    }
-    .btnDay:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 12px 30px rgba(33, 24, 24, .08);
-      border-color: rgba(233,109,160,.35);
+      min-height: 62px;
+      scroll-snap-align: start;
+      touch-action: manipulation;
     }
     .btnDay .dow{
       font-size: 11px;
@@ -170,7 +186,7 @@
       font-size: 14px;
       font-weight: 700;
       color: var(--text);
-      margin-top: 2px;
+      margin-top: 3px;
     }
     .btnDay.active{
       border-color: rgba(233,109,160,.55);
@@ -178,21 +194,23 @@
       background: linear-gradient(135deg, rgba(233,109,160,.10), rgba(255,182,154,.12));
     }
 
-    /* Time buttons */
+    /* ===== Mobile-friendly time grid ===== */
     .times{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      gap: 10px;
     }
     .btnTime{
       border: 1px solid var(--border);
       background: #fff;
       border-radius: 14px;
-      padding: 10px 10px;
+      padding: 12px 10px;
       cursor:pointer;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       text-align:center;
       line-height: 1.15;
+      min-height: 64px;
+      touch-action: manipulation;
     }
     .btnTime .ct{
       font-weight: 800;
@@ -200,22 +218,25 @@
       font-size: 14px;
     }
     .btnTime .local{
-      margin-top: 4px;
+      margin-top: 5px;
       font-weight: 700;
       font-size: 12px;
       color: rgba(107,95,96,.92);
       white-space: nowrap;
     }
-    .btnTime:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 12px 30px rgba(33, 24, 24, .08);
-      border-color: rgba(233,109,160,.35);
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
     }
 
-    .actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; }
-
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       padding: 12px 16px;
       border-radius: 14px;
       border: 1px solid var(--border);
@@ -225,11 +246,7 @@
       font-weight: 700;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       cursor:pointer;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 12px 30px rgba(33, 24, 24, .10);
-      border-color: rgba(233,109,160,.35);
+      touch-action: manipulation;
     }
     .btn.primary{
       border:none;
@@ -249,12 +266,21 @@
       font-size: 13px;
       color: var(--text);
       font-weight: 700;
+      max-width: 100%;
     }
-    .chip span{ font-weight: 600; color: rgba(42,35,35,.78); }
+    .chip span{
+      font-weight: 600;
+      color: rgba(42,35,35,.78);
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 55vw;
+    }
     .chip button{
       border:none; background: transparent; cursor:pointer;
       font-size: 14px; line-height: 1; padding: 0 2px;
       color: rgba(42,35,35,.75);
+      touch-action: manipulation;
     }
 
     .list{ margin-top: 14px; display:grid; gap: 10px; }
@@ -275,57 +301,66 @@
       font-size: 18px;
     }
     .item b{ display:block; margin-bottom: 2px; }
-
-    .side h2{ margin:0 0 10px; font-size:16px; }
     .mini{ font-size: 13.5px; color: var(--muted); margin-top: 10px; }
 
-    @media (max-width: 880px){
-      .wrap{ grid-template-columns: 1fr; }
-      .card{ padding: 22px; }
+    /* ===== Mobile optimization ===== */
+    @media (max-width: 720px){
+      body{ padding: 18px 12px; padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
+      .card{ padding: 18px; border-radius: 20px; }
+      .form{ padding: 12px; }
       .row{ grid-template-columns: 1fr; }
-      .times{ grid-template-columns: repeat(3, 1fr); }
-      .days{ grid-template-columns: repeat(4, 1fr); }
+      .times{ grid-template-columns: repeat(2, 1fr); }
+      .btn{ width: 100%; }
+      .actions{ flex-direction: column; }
+      /* remove hover lift on touch-ish devices */
+      .btnDay:hover, .btnTime:hover, .btn:hover{ transform:none; box-shadow:none; }
     }
 
-  textarea#tzInfo{
-  width:100%;
-  padding: 12px 12px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  outline: none;
-  font-family: inherit;
-  font-size: 14px;
-  background:#fff;
-  color: var(--text);
-  resize: none;
-  line-height: 1.25;
-  height: 52px; /* ajuste fino */
-}
-textarea#tzInfo:focus{
-  border-color: rgba(233,109,160,.55);
-  box-shadow: 0 0 0 4px rgba(233,109,160,.10);
-}
+    @media (max-width: 380px){
+      .times{ grid-template-columns: 1fr; }
+      .btnTime .local{ white-space: normal; }
+      textarea#tzInfo{ height: 62px; }
+    }
 
+    /* Sticky bottom CTA (mobile): keeps WhatsApp button always reachable */
+    .stickyCta{
+      display:none;
+    }
+    @media (max-width: 720px){
+      .stickyCta{
+        position: sticky;
+        bottom: 10px;
+        z-index: 10;
+        margin-top: 14px;
+        padding-bottom: env(safe-area-inset-bottom);
+        display:block;
+      }
+      .stickyCta .btn.primary{
+        width:100%;
+        border-radius: 16px;
+        padding: 14px 16px;
+        font-size: 15px;
+      }
+    }
   </style>
 </head>
 
 <body>
   <main class="wrap">
     <section class="card">
-      
+
       <h1>Parabéns pela sua decisão. 💗</h1>
       <p>
-       Agora o próximo passo é simples: <span class="highlight">me indicar seus horários de preferência</span>.
-<br/>Essas opções não significam agenda livre, mas me ajudam a consultar minha agenda
-e te propor o melhor horário possível para a sua primeira consulta.
-
+        Agora o próximo passo é simples: <span class="highlight">me indicar seus horários de preferência</span>.
+        <br/>Essas opções não significam agenda livre, mas me ajudam a consultar minha agenda
+        e te propor o melhor horário possível para a sua primeira consulta.
       </p>
 
       <div class="form">
         <div class="row">
           <div>
-            <label for="name">Seu nome </label>
-            <input id="name" type="text" placeholder="Ex.: Ana Paula" />
+            <label for="name">Seu nome</label>
+            <input id="name" type="text" placeholder="Ex.: Ana Paula" autocomplete="name" />
           </div>
           <div>
             <label>Fusos horários</label>
@@ -335,7 +370,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
         <div class="sectionTitle">
           <b>1) Escolha um dia</b>
-          <div class="miniNote">Próximos 14 dias</div>
+          <div class="miniNote">Arraste para o lado →</div>
         </div>
         <div class="days" id="days"></div>
 
@@ -350,13 +385,20 @@ e te propor o melhor horário possível para a sua primeira consulta.
         <div class="actions">
           <button class="btn" id="clearAll" type="button">🧹 Limpar</button>
           <a class="btn primary" id="waBtn" href="#" target="_blank" rel="noopener">
-            💬 Enviar opções no WhatsApp
+            💬 Enviar preferências no WhatsApp
           </a>
         </div>
 
         <div class="mini" style="margin-top:10px;">
           Os botões mostram <span class="highlight">Central Time (CT)</span> + o horário no <span class="highlight">seu fuso</span>.
           A mensagem vai com os dois.
+        </div>
+
+        <!-- Sticky CTA for mobile -->
+        <div class="stickyCta">
+          <a class="btn primary" id="waBtnSticky" href="#" target="_blank" rel="noopener">
+            💬 Enviar no WhatsApp
+          </a>
         </div>
       </div>
 
@@ -375,8 +417,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
         <span class="highlight">+1 (765) 701-9539</span>
       </p>
     </section>
-
-      </main>
+  </main>
 
   <script>
     // ===== CONFIG =====
@@ -410,6 +451,7 @@ e te propor o melhor horário possível para a sua primeira consulta.
     const chipsEl = document.getElementById("chips");
     const clearBtn = document.getElementById("clearAll");
     const waBtn = document.getElementById("waBtn");
+    const waBtnSticky = document.getElementById("waBtnSticky");
     const timeNote = document.getElementById("timeNote");
 
     // ===== STATE =====
@@ -460,29 +502,28 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
     // Retorna offset em minutos de um timeZone em relação ao UTC para um Date específico (considera DST)
     function getTimeZoneOffsetMinutes(date, timeZone){
-  const dtf = new Intl.DateTimeFormat("en-US", {
-    timeZone,
-    year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", second: "2-digit",
-    hour12: false
-  });
+      const dtf = new Intl.DateTimeFormat("en-US", {
+        timeZone,
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit",
+        hour12: false
+      });
 
-  const parts = dtf.formatToParts(date);
-  const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
+      const parts = dtf.formatToParts(date);
+      const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
 
-  const asUTC = Date.UTC(
-    Number(map.year),
-    Number(map.month) - 1,
-    Number(map.day),
-    Number(map.hour),
-    Number(map.minute),
-    Number(map.second)
-  );
+      const asUTC = Date.UTC(
+        Number(map.year),
+        Number(map.month) - 1,
+        Number(map.day),
+        Number(map.hour),
+        Number(map.minute),
+        Number(map.second)
+      );
 
-  // ✅ SINAL CORRETO
-  return (date.getTime() - asUTC) / 60000;
-}
-
+      // ✅ SINAL CORRETO
+      return (date.getTime() - asUTC) / 60000;
+    }
 
     function buildDateFromCentralISO(dateISO, timeHHMM){
       // Interpreta dateISO + timeHHMM como horário em America/Chicago (CT) e devolve Date absoluto
@@ -513,37 +554,42 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
     // ===== RENDER =====
     function renderDays(){
-  daysEl.innerHTML = "";
-  const today = new Date();
-  let added = 0; // quantos dias válidos já adicionamos
+      daysEl.innerHTML = "";
+      const today = new Date();
+      let added = 0;
 
-  for(let i=0; added < DAYS_AHEAD; i++){
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
+      for(let i=0; added < DAYS_AHEAD; i++){
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
 
-    // ❌ pula domingo
-    if(d.getDay() === 0) continue;
-    if(d.getDay() === 6) continue;
+        // ❌ pula domingo e sábado
+        if(d.getDay() === 0) continue;
+        if(d.getDay() === 6) continue;
 
-    const iso = isoFromDate(d);
-    const { dow, dm } = fmtDayBtn(d);
+        const iso = isoFromDate(d);
+        const { dow, dm } = fmtDayBtn(d);
 
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "btnDay" + (selectedDayISO === iso ? " active" : "");
-    btn.innerHTML = `<div class="dow">${dow.replace(".","")}</div><div class="dm">${dm}</div>`;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btnDay" + (selectedDayISO === iso ? " active" : "");
+        btn.innerHTML = `<div class="dow">${dow.replace(".","")}</div><div class="dm">${dm}</div>`;
 
-    btn.addEventListener("click", () => {
-      selectedDayISO = iso;
-      renderDays();
-      renderTimes();
-    });
+        btn.addEventListener("click", () => {
+          selectedDayISO = iso;
+          renderDays();
+          renderTimes();
+        });
 
-    daysEl.appendChild(btn);
-    added++; // conta só dias válidos (sem domingo)
-  }
-}
+        daysEl.appendChild(btn);
+        added++;
+      }
 
+      // melhora UX no celular: garante que o "active" fique visível
+      const active = daysEl.querySelector(".btnDay.active");
+      if(active && typeof active.scrollIntoView === "function"){
+        active.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      }
+    }
 
     function renderTimes(){
       timesEl.innerHTML = "";
@@ -558,8 +604,8 @@ e te propor o melhor horário possível para a sua primeira consulta.
       AVAILABLE_TIMES.forEach(t => {
         const dt = buildDateFromCentralISO(selectedDayISO, t);
 
-        const ctTime = formatTimeAmPmInTZ(dt, CT_TZ);      // AM/PM
-        const localTime = formatTimeAmPmInTZ(dt, localTZ); // AM/PM
+        const ctTime = formatTimeAmPmInTZ(dt, CT_TZ);
+        const localTime = formatTimeAmPmInTZ(dt, localTZ);
 
         const btn = document.createElement("button");
         btn.type = "button";
@@ -608,9 +654,15 @@ e te propor o melhor horário possível para a sua primeira consulta.
         chipsEl.appendChild(chip);
       });
 
-      waBtn.href = buildWhatsAppLink();
-      waBtn.style.pointerEvents = (slots.length === 0 ? "none" : "auto");
-      waBtn.style.opacity = (slots.length === 0 ? ".6" : "1");
+      const link = buildWhatsAppLink();
+      waBtn.href = link;
+      waBtnSticky.href = link;
+
+      const disabled = (slots.length === 0);
+      [waBtn, waBtnSticky].forEach(el => {
+        el.style.pointerEvents = disabled ? "none" : "auto";
+        el.style.opacity = disabled ? ".6" : "1";
+      });
     }
 
     function buildMessage(){
@@ -637,13 +689,12 @@ e te propor o melhor horário possível para a sua primeira consulta.
 
     function buildWhatsAppLink(){
       const msg = encodeURIComponent(buildMessage());
-      return `https://wa.me/17657019539?text=${msg}`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
     }
 
     // ===== INIT =====
     const localTZ = getLocalTimeZone();
     tzInfoEl.value = `Seu fuso: ${localTZ}\nMeu fuso: Central Time (CT)`;
-
 
     // Seleciona amanhã por padrão
     const tomorrow = new Date();
